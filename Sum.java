@@ -1,4 +1,4 @@
-
+import java.math.BigInteger;
 
 public class Sum{
 	public static void first(int n){
@@ -7,22 +7,31 @@ public class Sum{
 		System.out.println(sum3+sum5-sum15);
 	}
 	public static void second(int n){
-		int f0 = 1, f1 = 1, f = 1, sum = 0;
+		BigInteger f0 = BigInteger.valueOf(1), f1 = BigInteger.valueOf(1), f = BigInteger.valueOf(1), sum = BigInteger.ZERO;
 		for (int i = 1; i<n; i++){
 			f1 = f;
-			f += f0;
+			f = f.add(f0);
 			f0 = f1;
 			
-			
-			if (f%2==1){
+			System.out.println(f + "\n");
+			if (f.mod(BigInteger.valueOf(2)).equals(BigInteger.ONE)){
+				System.out.println("n: " + n + " i: " + i);
 				n++;
 				continue;
 			}
 			else{
-				sum += f;
+				sum = sum.add(f);
 			}
 		}
 		System.out.println(sum);
+		String endSum = sum.toString();
+		System.out.println("9: " + Character.getNumericValue('9'));
+		int digitSum = 0;
+		for (int j = 0; j<endSum.length(); j++){
+			char c = endSum.charAt(j);
+			digitSum += Character.getNumericValue(c);
+		}
+		System.out.println(digitSum);
 	}
 	public static void main(String[] args){
 		first(2015);
